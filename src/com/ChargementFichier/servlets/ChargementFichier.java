@@ -5,7 +5,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,10 +21,8 @@ public class ChargementFichier extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     public static final int TAILLE_TAMPON = 10240;
-    // Chemin ou sera stocké le fichier chargé
+    // Chemin ou sera stockÃ© le fichier chargÃ©
     public static final String CHEMIN_FICHIERS = "\\Users\\nboubaka\\Fichier\\"; 
-    
-       
     public ChargementFichier() {
         super();
         // TODO Auto-generated constructor stub
@@ -36,15 +33,15 @@ public class ChargementFichier extends HttpServlet {
     }
 
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        // On récupère le champ description comme d'habitude
+        // On rÃ©cupÃ¨re le champ description comme d'habitude
         String description = request.getParameter("description");
         request.setAttribute("description", description );
 
-        // On récupère le champ du fichier
-        //L'objet de type permet de recuperer les fichiers receptionnés du côté du server
+        // On rÃ©cupÃ¨re le champ du fichier
+        //L'objet de type permet de recuperer les fichiers receptionnÃ©s du cÃ´tÃ© du server
         Part part = request.getPart("fichier");
             
-        // On vérifie qu'on a bien reçu un fichier
+        // On vÃ©rifie qu'on a bien reÃ§u un fichier
         String nomFichier = getNomFichier(part);
 
         // Si on a bien un fichier
@@ -54,7 +51,7 @@ public class ChargementFichier extends HttpServlet {
              nomFichier = nomFichier.substring(nomFichier.lastIndexOf('/') + 1)
                     .substring(nomFichier.lastIndexOf('\\') + 1);
 
-            // On écrit définitivement le fichier sur le disque
+            // On Ã©crit dÃ©finitivement le fichier sur le disque
             ecrireFichier(part, nomFichier, CHEMIN_FICHIERS);
 
             request.setAttribute(nomChamp, nomFichier);
@@ -87,7 +84,7 @@ public class ChargementFichier extends HttpServlet {
         }
     }
     
-    //La methode getNomFichier va permettre de decouper l'entête http et d'extraire le nom d'origine du fichier
+    //La methode getNomFichier va permettre de decouper l'entÃªte http et d'extraire le nom d'origine du fichier
     private static String getNomFichier( Part part ) {
         for ( String contentDisposition : part.getHeader( "content-disposition" ).split( ";" ) ) {
             if ( contentDisposition.trim().startsWith( "filename" ) ) {
