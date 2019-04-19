@@ -12,7 +12,7 @@ import com.Charger_Utilisateur.beans.Utilisateur;
 import com.Charger_Utilisateur.dao.DaoException;
 import com.Charger_Utilisateur.dao.DaoFactory;
 import com.Charger_Utilisateur.dao.UtilisateurDao.UtilsateurDao;
-import com.Charger_Utilisateur.ddb.Nom;
+
 
 /**
  * Servlet implementation class PageSession
@@ -41,9 +41,9 @@ public void init () throws ServletException{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		Nom tabname= new Nom();
+		//Nom tabname= new Nom();
 		
-		request.setAttribute("utilisateurs", tabname.recupUtilisateur());
+		//request.setAttribute("utilisateurs", tabname.recupUtilisateur());
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pageSession.jsp").forward(request, response);
 	}
 
